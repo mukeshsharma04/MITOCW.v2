@@ -4,17 +4,20 @@ import {
   View,
   Button,
   StyleSheet,
-  Image
+  Image,
+  TouchableHighlight
 } from 'react-native';
 
 export default (department, selectDepartment) => (
-  <View onTouchEnd={() => selectDepartment(department.department_key)} style={styles.container}>
-    <Image style={styles.backdrop} source={{uri: `http://${department.dept_image_url}`}}>
-      <View style={styles.backdrop_container}>
-        <Text style={ styles.text }>{department.title}</Text>
-      </View>
-    </Image>
-  </View>
+  <TouchableHighlight onPress={() => selectDepartment(department)}>
+    <View style={styles.container}>
+      <Image style={styles.backdrop} source={{uri: `http://${department.dept_image_url}`}}>
+        <View style={styles.backdrop_container}>
+          <Text style={ styles.text }>{department.title}</Text>
+        </View>
+      </Image>
+    </View>
+  </TouchableHighlight>
 )
 
 const styles = StyleSheet.create({

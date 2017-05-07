@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { Button, View, ListView, StyleSheet, Text, Image } from 'react-native';
 
 import DepartmentItem from '../DepartmentItem';
-import CourseList from '../CourseList';
-
 import API from '../../api';
 
 class CourseContainer extends Component {
@@ -18,24 +16,10 @@ class CourseContainer extends Component {
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   }
 
-  selectDepartment(department) {
-    this.props.dispatch({
-      type: "SELECT_DEPARTMENT",
-      value: department.department_key
-    });
-    this.props.navigator.push({
-      title: department.title,
-      component: CourseList
-    });
-  }
-
   render() {
     const dataSource = this.ds.cloneWithRows(this.props.departments);
     return <View>
-        <ListView contentContainerStyle={styles.list}
-          dataSource={dataSource}
-          renderRow={(rowData) => DepartmentItem(rowData, this.selectDepartment.bind(this))}
-        />
+        <Text>Hello World</Text>
       </View>
   }
 }
