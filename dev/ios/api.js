@@ -8,6 +8,12 @@ export default {
 
   CourseList(department) {
     return fetch(`${OCW_URL}courses/${department}/${department}.json`)
-      .then(resp => resp.json(), err => console.error(err));
+      .then(resp => resp.json(), err => console.error(err))
+      .then(courses => {
+        return {
+          department,
+          courses,
+        }
+      });
   } 
 }

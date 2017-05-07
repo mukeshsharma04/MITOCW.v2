@@ -13,7 +13,6 @@ export default class App extends Component {
         initialRoute={{
           component: CourseContainer,
           title: 'MIT OpenCourseWare',
-          passProps: { myProp: 'foo' },
         }}
         style={styles.container}
       />

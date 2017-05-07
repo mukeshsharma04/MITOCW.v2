@@ -2,10 +2,10 @@ import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware';
 
 function main(state = {
-  test: "100",
   pending: false,
   departments: [],
-  departments_mapped: {}
+  departments_mapped: {},
+  courses: {},
 }, action) {
   console.log("Reduce", action.type);
   let newState = Object.assign({}, state);
@@ -27,8 +27,17 @@ function main(state = {
         }
       }
       break;
+    case "FETCH_COURSES_FULFILLED":
+      newState.courses = [];
+      newState.courses[action.payload.department] = [];
+      for (let course of action.payload.courses) {
+        for (let c of Object.keys(course)) {
+          course[c].course_key = c;
+          newState.courses[action.payload.department].push(course[c]);
+        }
+      }
+      break;
      default:
-      console.log("Hello world!");
       break;
   }
   return newState;
