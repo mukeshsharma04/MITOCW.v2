@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Button, View, ListView, StyleSheet, Text, Image } from 'react-native';
 
 import DepartmentItem from '../DepartmentItem';
-import CourseList from '../CourseList';
+import CoursesList from '../CoursesList';
 
 import API from '../../api';
 
@@ -25,7 +25,7 @@ class CourseContainer extends Component {
     });
     this.props.navigator.push({
       title: department.title,
-      component: CourseList,
+      component: CoursesList,
       passProps: { department },
     });
   }

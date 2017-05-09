@@ -6,6 +6,7 @@ function main(state = {
   departments: [],
   departments_mapped: {},
   courses: {},
+  courses_grouped: {}
 }, action) {
   console.log("Reduce", action.type);
   let newState = Object.assign({}, state);
@@ -28,8 +29,9 @@ function main(state = {
       }
       break;
     case "FETCH_COURSES_FULFILLED":
-      newState.courses = [];
+      newState.courses = {};
       newState.courses[action.payload.department] = [];
+      newState.courses_grouped[action.payload.department] = {};
       for (let course of action.payload.courses) {
         for (let c of Object.keys(course)) {
           course[c].course_key = c;
