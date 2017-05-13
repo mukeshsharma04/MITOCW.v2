@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Button, View, ScrollView, ListView, StyleSheet, Text, Image } from 'react-native';
+import { Button, View, ScrollView, ListView, StyleSheet, Text, Image, WebView } from 'react-native';
 
 export default function(mediaResource) {
   return (
     <ScrollView style={styles.scroller}>
       <View style={styles.container}>
         <Text style={styles.title}>{mediaResource.title}</Text>
-        <Image style={styles.image} source={{uri: `http://img.youtube.com/vi/${mediaResource.YouTube.youtube_id}/hqdefault.jpg`}} />
+        <WebView
+          source={{ uri: `https://www.youtube.com/embed/${mediaResource.YouTube.youtube_id}` }}
+          style={{
+            width: '100%',
+            aspectRatio: 1
+          }}
+        />
       </View>
     </ScrollView>
   )
