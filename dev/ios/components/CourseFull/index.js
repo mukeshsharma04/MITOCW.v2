@@ -11,26 +11,29 @@ class CourseFull extends Component {
 
   featureHasMediaResources(feature) {
 
+    let media_resources = [];
+
     for (let r of this.props.course.media_resources) {
       for (let k of Object.keys(r)) {
         if (r[k].path.includes(feature)) {
-          return true;
+          r[k].title = k;
+          media_resources.push(r[k]);
         }
       }
     }
-    return false;
+    return media_resources;
   }
 
   selectCourseFeature(url) {
     const urlSlugs = url.split('/');
     const lastSlug = urlSlugs[urlSlugs.length-1];
-    let hasResources = this.featureHasMediaResources(lastSlug);
+    let media_resources = this.featureHasMediaResources(lastSlug);
 
-    let title = `${lastSlug[0].toUpperCase()}${lastSlug.substr(1)}`.replace(/-/gi, ' ');
+    let title = `${lastSlug[0].toUpperCase()}${lastSlug.substr(1)}`.replace(/-|_/gi, ' ');
 
     let featureComponent;
 
-    if (hasResources) {
+    if (media_resources.length) {
       featureComponent = CourseMediaList;
     } else {
       featureComponent = CourseHTMLPage;
@@ -42,7 +45,8 @@ class CourseFull extends Component {
       passProps: {
         course: this.props.course,
         title,
-        feature: url
+        feature: url,
+        media_resources
       },
     });
   }
@@ -58,7 +62,7 @@ class CourseFull extends Component {
           {
             this.props.course.course_section_and_tlp_urls.map(url => {
               let title = url.split('/').slice(-1)[0];
-              title = `${title[0].toUpperCase()}${title.substr(1)}`.replace(/-/gi, ' ');
+              title = `${title[0].toUpperCase()}${title.substr(1)}`.replace(/-|_/gi, ' ');
               return <Button color={'#A31F34'} title={title} key={url} style={styles.feture_button} onPress={() => this.selectCourseFeature(url)} />
             })
           }

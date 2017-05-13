@@ -15,7 +15,7 @@ export default class CourseMediaList extends Component {
   }
 
   render() {
-    const dataSource = this.ds.cloneWithRows(this.props.course.media_resources);
+    const dataSource = this.ds.cloneWithRows(this.props.media_resources);
     return (
       <View style={styles.container}>
         <ListView contentContainerStyle={styles.list}

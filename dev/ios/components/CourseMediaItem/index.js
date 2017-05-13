@@ -1,43 +1,53 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Button,
-  StyleSheet,
-  Image,
-  TouchableHighlight
-} from 'react-native';
+import { connect } from 'react-redux'
+import { Button, View, ScrollView, ListView, StyleSheet, Text, Image } from 'react-native';
 
-export default (mediaItem) => (
-  <TouchableHighlight onPress={() => null}>
-    <View style={styles.container}>
-    </View>
-  </TouchableHighlight>
-)
+export default function(mediaResource) {
+  return (
+    <ScrollView style={styles.scroller}>
+      <View style={styles.container}>
+        <Text style={styles.title}>{mediaResource.title}</Text>
+        <Image style={styles.image} source={{uri: `http://img.youtube.com/vi/${mediaResource.YouTube.youtube_id}/hqdefault.jpg`}} />
+      </View>
+    </ScrollView>
+  )
+}
 
 const styles = StyleSheet.create({
-  text: {
-    color: "white",
-    backgroundColor: "#A31F34",
-    fontWeight: "bold",
-    padding: 2,
-    width: "100%",
-    textAlign: "center",
-    fontSize: 15
+  title: {
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
-  backdrop_container: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap'
+  space: {
+    height: 15,
+  },
+  term: {
+    marginBottom: 10,
+    fontSize: 20
+  },
+  scroller: {
+    backgroundColor: '#C2C0BF',
+  },
+  feature_button: {
+    justifyContent: "flex-start",
   },
   container: {
-    margin: 5,
-    width: 145,
-    height: 145,
+    margin: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'white',
   },
-  backdrop: {
-    width: 145,
-    height: 145,
-    justifyContent: 'flex-end',
+  image: {
+    aspectRatio: 1,
+    width: "100%",
+    borderWidth: 2
+  },
+  a: {
+    color: '#A31F34',
+    fontWeight: 'bold'
   }
 });
