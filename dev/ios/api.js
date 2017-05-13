@@ -1,3 +1,5 @@
+import cheerio from 'cheerio-without-node-native';
+
 const OCW_URL = 'http://ocw5.mit.edu/';
 
 export default {
@@ -15,5 +17,29 @@ export default {
           courses,
         }
       });
-  } 
+  },
+
+  ParsedFeature(url) {
+    return fetch(`http://${url}`)
+      .then(resp => resp.text())
+      .then(html => {
+        
+        let formattedHTML = html
+          .replace(/(\s\s)|\n|\t/g,'')
+          .replace(/src\=/g, 'mit-src=')
+          .match(/\<body.*\/body\>/)[0]
+          .replace(/href="\//g, 'href="https://ocw.mit.edu/')
+          .replace(/mit\-src\="\//g, 'src="https://ocw.mit.edu/');
+
+        let $ = cheerio.load(formattedHTML);
+
+        $('.help,.sc_nav,.sc_nav_bottom').remove();
+        $('a').each(function() {
+          $(this).attr('target', '_blank');
+        });
+        
+        return $('#course_inner_section').html();
+
+      });
+  }
 }
