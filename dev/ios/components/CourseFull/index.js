@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { TouchableHighlight, View, ScrollView, ListView, StyleSheet, Text, Image } from 'react-native';
+import { Button, View, ScrollView, ListView, StyleSheet, Text, Image } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 
 
@@ -59,9 +59,7 @@ class CourseFull extends Component {
             this.props.course.course_section_and_tlp_urls.map(url => {
               let title = url.split('/').slice(-1)[0];
               title = `${title[0].toUpperCase()}${title.substr(1)}`.replace(/-/gi, ' ');
-              return <TouchableHighlight key={url} style={styles.feture_button} onPress={() => this.selectCourseFeature(url)}>
-                      <Text style={ styles.text }>{title}</Text>
-                    </TouchableHighlight>
+              return <Button color={'#A31F34'} title={title} key={url} style={styles.feture_button} onPress={() => this.selectCourseFeature(url)} />
             })
           }
           <View style={styles.space}></View>
@@ -104,6 +102,10 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     width: "100%",
     borderWidth: 2
+  },
+  a: {
+    color: '#A31F34',
+    fontWeight: 'bold'
   }
 });
 

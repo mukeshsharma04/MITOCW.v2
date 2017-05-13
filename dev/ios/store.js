@@ -8,7 +8,6 @@ function main(state = {
   courses: {},
   courses_grouped: {}
 }, action) {
-  console.log("Reduce", action.type);
   let newState = Object.assign({}, state);
   switch(action.type) {
     case "SELECT_DEPARTMENT":

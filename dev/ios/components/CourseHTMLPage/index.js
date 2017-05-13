@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { TouchableHighlight, View, ScrollView, ListView, StyleSheet, Text, Image } from 'react-native';
+import { TouchableHighlight, ActivityIndicator, View, ScrollView, ListView, StyleSheet, Text, Image } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 
 import API from '../../api';
@@ -28,9 +28,21 @@ class CourseHTMLPage extends Component {
     return (
       <ScrollView style={styles.scroller}>
         <View style={styles.container}>
-          <Text style={styles.title}>{this.props.title}</Text>
+          <View style={{borderBottomWidth: 2, marginBottom: 20}}>
+            <Text style={styles.title}>{this.props.title}</Text>
+          </View>
           {
             this.state.loaded && <HTMLView addLineBreaks={true} stylesheet={styles} value={ this.state.featureHTML } />
+          }
+          {
+            !this.state.loaded && (
+              <View>
+                <ActivityIndicator
+                  size="large"
+                  color="#A31F34"
+                />
+              </View>
+            )
           }
         </View>
       </ScrollView>
@@ -41,7 +53,7 @@ class CourseHTMLPage extends Component {
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 10,
   },
@@ -70,7 +82,16 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     width: "100%",
     borderWidth: 2
-  }
+  },
+  a: {
+    color: '#A31F34',
+    fontWeight: 'bold'
+  },
+  img: {
+    aspectRatio: 1,
+    width: "100%",
+    borderWidth: 2
+  },
 });
 
 export default CourseHTMLPage;
