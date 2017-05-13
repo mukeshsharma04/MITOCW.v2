@@ -21,7 +21,7 @@ export default class CourseMediaList extends Component {
         <ListView contentContainerStyle={styles.list}
           automaticallyAdjustContentInsets={false}
           dataSource={dataSource}
-          renderRow={(rowData) => CourseMediaItem(rowData, this.selectCourse.bind(this))}
+          renderRow={(rowData) => CourseMediaItem(rowData)}
         />
       </View>
     )

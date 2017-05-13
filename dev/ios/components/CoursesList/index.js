@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { View, ListView, TextInput, StyleSheet } from 'react-native';
+import { ActivityIndicator, View, ListView, TextInput, StyleSheet } from 'react-native';
 
 import CourseFull from '../CourseFull';
 import CourseItem from '../CourseItem';
@@ -10,14 +10,24 @@ class CourseList extends Component {
 
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      search: '',
+      loaded: false
+    };
+  }
+
+  componentDidMount() {
     this.props.dispatch({
       type: "FETCH_COURSES",
       payload: API.CourseList(this.props.department.department_key)
+        .then(data => {
+          this.setState({
+            loaded: true
+          });
+          return data;
+        })
     });
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      search: ''
-    };
   }
 
   selectCourse(course) {
@@ -53,17 +63,31 @@ class CourseList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={{height: 40, padding: 5, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={search => this.setState({search})}
-          value={this.state.search}
-          placeholder='Enter here to search courses'
-        />
-        <ListView contentContainerStyle={styles.list}
-          automaticallyAdjustContentInsets={false}
-          dataSource={this.groupedCourses()}
-          renderRow={(rowData) => CourseItem(rowData, this.selectCourse.bind(this))}
-        />
+        {
+          this.state.loaded && <TextInput
+            style={{height: 40, padding: 5, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={search => this.setState({search})}
+            value={this.state.search}
+            placeholder='Enter here to search courses'
+          />
+        }
+        {
+          !this.state.loaded && (
+            <View style={{ justifyContent: 'center', height: "100%" }}>
+              <ActivityIndicator
+                size="large"
+                color="#A31F34"
+              />
+            </View>
+          )
+        }
+        {
+          this.state.loaded && <ListView contentContainerStyle={styles.list}
+            automaticallyAdjustContentInsets={false}
+            dataSource={this.groupedCourses()}
+            renderRow={(rowData) => CourseItem(rowData, this.selectCourse.bind(this))}
+          />
+        }
       </View>
     )
   }
