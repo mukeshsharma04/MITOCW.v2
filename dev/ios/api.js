@@ -1,6 +1,6 @@
 import cheerio from 'cheerio-without-node-native';
 
-const OCW_URL = 'http://ocw5.mit.edu/';
+const OCW_URL = 'http://mit.edu/';
 
 export default {
   Departments() {
