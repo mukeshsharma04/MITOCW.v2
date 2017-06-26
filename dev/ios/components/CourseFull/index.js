@@ -57,7 +57,7 @@ class CourseFull extends Component {
       <ScrollView style={styles.scroller}>
         <View style={styles.container}>
           <Text style={styles.title}>({this.props.course.master_course_number}) {this.props.course.course_title}</Text>
-          <Image style={styles.image} source={{uri: `http://${this.props.course.course_image_path}`}} />
+          <Image style={styles.image} source={{uri: `${this.props.course.course_image_path}`}} />
           <Text style={styles.term}>{this.props.course.term} {this.props.course.year}</Text>
           {
             this.props.course.course_section_and_tlp_urls.map(url => {

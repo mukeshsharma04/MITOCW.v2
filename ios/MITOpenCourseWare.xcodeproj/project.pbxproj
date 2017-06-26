@@ -1004,6 +1004,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = WZ45C8B672;
@@ -1017,7 +1018,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = engineer.wyatt.mitocw;
 				PRODUCT_NAME = MITOpenCourseWare;
-				PROVISIONING_PROFILE = "5d8b4dbf-2539-43e7-b0eb-426d2219547f";
+				PROVISIONING_PROFILE = "a52acd12-6325-43f0-a35d-975197dfacd2";
 				PROVISIONING_PROFILE_SPECIFIER = MITOCWEngineer;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1027,6 +1028,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WZ45C8B672;
 				INFOPLIST_FILE = MITOpenCourseWare/Info.plist;
@@ -1039,7 +1041,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = engineer.wyatt.mitocw;
 				PRODUCT_NAME = MITOpenCourseWare;
-				PROVISIONING_PROFILE = "878a176b-f68e-4e7a-83e3-2ba20824a4cd";
+				PROVISIONING_PROFILE = "5d8b4dbf-2539-43e7-b0eb-426d2219547f";
 				PROVISIONING_PROFILE_SPECIFIER = MITOCWEngineer;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

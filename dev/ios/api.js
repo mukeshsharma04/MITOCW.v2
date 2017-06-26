@@ -1,6 +1,6 @@
 import cheerio from 'cheerio-without-node-native';
 
-const OCW_URL = 'http://mit.edu/';
+const OCW_URL = 'https://ocw.mit.edu/';
 
 export default {
   Departments() {
@@ -20,7 +20,7 @@ export default {
   },
 
   ParsedFeature(url) {
-    return fetch(`http://${url}`)
+    return fetch(`${url}`)
       .then(resp => resp.text())
       .then(html => {
         
