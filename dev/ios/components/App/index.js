@@ -10,11 +10,11 @@ export default class App extends Component {
   render() {
     return (
       <NavigatorIOS
-        initialRoute={{
+        initialRoute={ {
           component: CourseContainer,
           title: 'MIT OpenCourseWare',
-        }}
-        style={styles.container}
+        } }
+        style={ styles.container }
       />
     );
   }

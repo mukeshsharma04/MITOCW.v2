@@ -4,15 +4,15 @@ import { Button, View, ScrollView, ListView, StyleSheet, Text, Image, WebView } 
 
 export default function(mediaResource) {
   return (
-    <ScrollView style={styles.scroller}>
-      <View style={styles.container}>
-        <Text style={styles.title}>{mediaResource.title}</Text>
+    <ScrollView style={ styles.scroller }>
+      <View style={ styles.container }>
+        <Text style={ styles.title }>{mediaResource.title}</Text>
         <WebView
-          source={{ uri: `https://www.youtube.com/embed/${mediaResource.YouTube.youtube_id}` }}
-          style={{
+          source={ { uri: `https://www.youtube.com/embed/${mediaResource.YouTube.youtube_id}` } }
+          style={ {
             width: '100%',
             aspectRatio: 1
-          }}
+          } }
         />
       </View>
     </ScrollView>

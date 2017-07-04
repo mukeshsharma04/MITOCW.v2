@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 
 export default (department, selectDepartment) => (
-  <TouchableHighlight onPress={() => selectDepartment(department)}>
-    <View style={styles.container}>
-      <Image style={styles.backdrop} source={{uri: `${department.dept_image_url}`}}>
-        <View style={styles.backdrop_container}>
+  <TouchableHighlight onPress={ () => selectDepartment(department) }>
+    <View style={ styles.container }>
+      <Image style={ styles.backdrop } source={ { uri: `${department.dept_image_url}` } }>
+        <View style={ styles.backdrop_container }>
           <Text style={ styles.text }>{department.title}</Text>
         </View>
       </Image>

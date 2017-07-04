@@ -26,24 +26,23 @@ class CourseHTMLPage extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.scroller}>
-        <View style={styles.container}>
-          <View style={{borderBottomWidth: 2, marginBottom: 20}}>
-            <Text style={styles.title}>{this.props.title}</Text>
+      <ScrollView style={ styles.scroller }>
+        <View style={ styles.container }>
+          <View style={ { borderBottomWidth: 2, marginBottom: 20 } }>
+            <Text style={ styles.title }>{this.props.title}</Text>
           </View>
           {
-            this.state.loaded && <HTMLView addLineBreaks={true} stylesheet={styles} value={ this.state.featureHTML } />
+            this.state.loaded && <HTMLView addLineBreaks={ true } stylesheet={ styles } value={ this.state.featureHTML } />
           }
           {
             !this.state.loaded && (
-              <View>
-                <ActivityIndicator
-                  size="large"
-                  color="#A31F34"
-                />
-              </View>
-            )
-          }
+            <View>
+              <ActivityIndicator
+                size="large"
+                color="#A31F34"
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
     )

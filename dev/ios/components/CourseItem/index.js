@@ -14,25 +14,26 @@ function extractSectionText(section) {
 
 export default (course, selectCourse) => (
 
-  course.type == 'header' ? <Text style={styles.header}>{course.text}</Text> :
-
-  <TouchableHighlight onPress={() => selectCourse(course)}>
-    <View style={styles.container}>
-      <View style={ styles.course_detail_wrap }>
-        <Text style={ styles.text_detail }>{course.master_course_number}</Text>
-        <Text style={ styles.text_detail }>{course.term}</Text>
-        <Text style={ styles.text_detail }>{course.year}</Text>
-      </View>
-      <View style={ styles.text_title_wrap }>
-        <Text style={ styles.text_title }>{course.course_title}</Text>
-        <View style={ styles.chip_wrap }>
-          {
-            course.course_section_and_tlp_urls.map(section => <Text style={ styles.chip } key={section}>{ extractSectionText(section) }</Text>)
-          }
+  course.type == 'header' ? <Text style={ styles.header }>{course.text}</Text> :
+    (
+      <TouchableHighlight onPress={ () => selectCourse(course) }>
+        <View style={ styles.container }>
+          <View style={ styles.course_detail_wrap }>
+            <Text style={ styles.text_detail }>{course.master_course_number}</Text>
+            <Text style={ styles.text_detail }>{course.term}</Text>
+            <Text style={ styles.text_detail }>{course.year}</Text>
+          </View>
+          <View style={ styles.text_title_wrap }>
+            <Text style={ styles.text_title }>{course.course_title}</Text>
+            <View style={ styles.chip_wrap }>
+              {
+                course.course_section_and_tlp_urls.map(section => <Text style={ styles.chip } key={ section }>{ extractSectionText(section) }</Text>)
+              }
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
-  </TouchableHighlight>
+      </TouchableHighlight>
+    )
 )
 
 const styles = StyleSheet.create({

@@ -1,0 +1,19 @@
+{
+  "extends": "es2015",
+  "plugins": [
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
+    "object-curly-spacing": ["error", "always"],
+    "react/jsx-indent": [2, 2],
+    "react/jsx-curly-spacing": [2, "always"]
+  }
+}

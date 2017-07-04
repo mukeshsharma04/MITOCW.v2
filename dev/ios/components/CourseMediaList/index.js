@@ -11,17 +11,17 @@ export default class CourseMediaList extends Component {
 
   constructor(props) {
     super(props);
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
 
   render() {
     const dataSource = this.ds.cloneWithRows(this.props.media_resources);
     return (
-      <View style={styles.container}>
-        <ListView contentContainerStyle={styles.list}
-          automaticallyAdjustContentInsets={false}
-          dataSource={dataSource}
-          renderRow={(rowData) => CourseMediaItem(rowData)}
+      <View style={ styles.container }>
+        <ListView contentContainerStyle={ styles.list }
+          automaticallyAdjustContentInsets={ false }
+          dataSource={ dataSource }
+          renderRow={ (rowData) => CourseMediaItem(rowData) }
         />
       </View>
     )

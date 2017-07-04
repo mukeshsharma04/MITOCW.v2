@@ -9,9 +9,9 @@ import App from './dev/ios/components/App';
 export default class MITOpenCourseWare extends Component {
   render() {
     return (
-    <Provider store={store}>
-      <App />
-    </Provider>
+      <Provider store={ store }>
+        <App />
+      </Provider>
     );
   }
 }

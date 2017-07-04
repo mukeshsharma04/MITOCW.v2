@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Button, View, ListView, StyleSheet, Text, Image } from 'react-native';
+import { Button, View, ListView, StyleSheet, Text, Image, TabBarIOS } from 'react-native';
 
 import DepartmentItem from '../DepartmentItem';
 import CoursesList from '../CoursesList';
@@ -15,7 +15,7 @@ class CourseContainer extends Component {
       type: "FETCH_DEPARTMENTS",
       payload: API.Departments()
     });
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
 
   selectDepartment(department) {
@@ -32,20 +32,28 @@ class CourseContainer extends Component {
 
   render() {
     const dataSource = this.ds.cloneWithRows(this.props.departments);
-    return <View>
-        <ListView contentContainerStyle={styles.list}
-          dataSource={dataSource}
-          renderRow={(rowData) => DepartmentItem(rowData, this.selectDepartment.bind(this))}
+    return (
+      <View>
+        <Accordion
+          header={ <Text>Hello there</Text> }
+          content={ (
+            <ListView contentContainerStyle={ styles.list }
+              dataSource={ dataSource }
+              renderRow={ (rowData) => DepartmentItem(rowData, this.selectDepartment.bind(this)) }
+            />
+          ) }
+          easing="easeOutCubic"
         />
       </View>
+    )
   }
 }
 
 const styles = StyleSheet.create({
   list: {
-      justifyContent: 'center',
-      flexDirection: 'row',
-      flexWrap: 'wrap'
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   }
 });
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Button, View, ScrollView, ListView, StyleSheet, Text, Image } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 
-
 import CourseHTMLPage from '../CourseHTMLPage';
 import CourseMediaList from '../CourseMediaList';
 
@@ -51,23 +50,22 @@ class CourseFull extends Component {
     });
   }
 
-
   render() {
     return (
-      <ScrollView style={styles.scroller}>
-        <View style={styles.container}>
-          <Text style={styles.title}>({this.props.course.master_course_number}) {this.props.course.course_title}</Text>
-          <Image style={styles.image} source={{uri: `${this.props.course.course_image_path}`}} />
-          <Text style={styles.term}>{this.props.course.term} {this.props.course.year}</Text>
+      <ScrollView style={ styles.scroller }>
+        <View style={ styles.container }>
+          <Text style={ styles.title }>({this.props.course.master_course_number}) {this.props.course.course_title}</Text>
+          <Image style={ styles.image } source={ { uri: `${this.props.course.course_image_path}` } } />
+          <Text style={ styles.term }>{this.props.course.term} {this.props.course.year}</Text>
           {
             this.props.course.course_section_and_tlp_urls.map(url => {
               let title = url.split('/').slice(-1)[0];
               title = `${title[0].toUpperCase()}${title.substr(1)}`.replace(/-|_/gi, ' ');
-              return <Button color={'#A31F34'} title={title} key={url} style={styles.feture_button} onPress={() => this.selectCourseFeature(url)} />
+              return <Button color={ '#A31F34' } title={ title } key={ url } style={ styles.feture_button } onPress={ () => this.selectCourseFeature(url) } />
             })
           }
-          <View style={styles.space}></View>
-          <HTMLView addLineBreaks={false} stylesheet={styles} value={ this.props.course.description } />
+          <View style={ styles.space }></View>
+          <HTMLView addLineBreaks={ false } stylesheet={ styles } value={ this.props.course.description } />
         </View>
       </ScrollView>
     )
