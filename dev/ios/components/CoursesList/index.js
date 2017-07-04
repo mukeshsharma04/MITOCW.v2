@@ -15,12 +15,13 @@ class CourseList extends Component {
       search: '',
       loaded: false
     };
+    console.log("This props", this.props[this.props.departmentKind]);
   }
 
   componentDidMount() {
     this.props.dispatch({
       type: "FETCH_COURSES",
-      payload: API.CourseList(this.props.department.department_key)
+      payload: API.CourseList(this.props[this.props.departmentKind].department_key, this.props.nestedURL != null ? this.props.nestedURL : true )
         .then(data => {
           this.setState({
             loaded: true
@@ -46,9 +47,9 @@ class CourseList extends Component {
     let rows = [];
     let courses_grouped = {};
 
-    if (!this.props.courses[this.props.department.department_key]) return this.ds.cloneWithRows(rows);
+    if (!this.props.courses[this.props[this.props.departmentKind].department_key]) return this.ds.cloneWithRows(rows);
 
-    for (let course of this.props.courses[this.props.department.department_key]) {
+    for (let course of this.props.courses[this.props[this.props.departmentKind].department_key]) {
       if (!course.course_title.includes(this.state.search)) continue;
       courses_grouped[course.level] = courses_grouped[course.level] || [];
       courses_grouped[course.level].push(course);

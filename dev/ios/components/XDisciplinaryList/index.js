@@ -19,15 +19,15 @@ class XDisciplinaryList extends Component {
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
 
-  selectXDisciplinary(department) {
+  selectXDisciplinary(xdiscipline) {
     this.props.dispatch({
       type: "SELECT_DEPARTMENT",
-      value: department.department_key
+      value: xdiscipline.department_key,
     });
     this.props.navigator.push({
-      title: department.title,
+      title: xdiscipline.title,
       component: CoursesList,
-      passProps: { department },
+      passProps: { xdiscipline, departmentKind: "xdiscipline", nestedURL: false },
     });
   }
 

@@ -33,14 +33,16 @@ function main(state = {
   case "FETCH_XDISCIPLINARY_FULFILLED":
     newState.xdisciplines = [];
     newState.xdisciplines_mapped = {};
-    for (let dept of action.payload) {
-      for (let d of Object.keys(dept)) {
-        dept[d] = {
-          "home_url": dept[d]
+    for (let disc of action.payload) {
+      for (let d of Object.keys(disc)) {
+        const key = disc[d].split('/').splice(-2, 1);
+        disc[d] = {
+          "home_url": disc[d]
         };
-        dept[d].department_key = d;
-        newState.xdisciplines.push(dept[d]);
-        newState.xdisciplines_mapped[d] = dept[d];
+        disc[d].department_key = key;
+        disc[d].title = d;
+        newState.xdisciplines.push(disc[d]);
+        newState.xdisciplines_mapped[d] = disc[d];
       }
     }
     break;

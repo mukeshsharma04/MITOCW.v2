@@ -22,12 +22,12 @@ class CourseContainer extends Component {
   selectDepartment(department) {
     this.props.dispatch({
       type: "SELECT_DEPARTMENT",
-      value: department.department_key
+      value: department.department_key,
     });
     this.props.navigator.push({
       title: department.title,
       component: CoursesList,
-      passProps: { department },
+      passProps: { department, departmentKind: "department" },
     });
   }
 
