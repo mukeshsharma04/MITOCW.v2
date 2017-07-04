@@ -8,6 +8,11 @@ export default {
       .then(resp => resp.json(), err => console.error(err));
   },
 
+  XDisciplinary() {
+    return fetch(`${OCW_URL}courses/CrossDisciplinaryMaster.json`)
+      .then(resp => resp.json(), err => console.error(err));
+  },
+
   CourseList(department) {
     return fetch(`${OCW_URL}courses/${department}/${department}.json`)
       .then(resp => resp.json(), err => console.error(err))

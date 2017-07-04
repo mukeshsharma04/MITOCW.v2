@@ -8,18 +8,18 @@ import CoursesList from '../CoursesList';
 
 import API from '../../api';
 
-class CourseContainer extends Component {
+class XDisciplinaryList extends Component {
 
   constructor(props) {
     super(props);
     this.props.dispatch({
-      type: "FETCH_DEPARTMENTS",
-      payload: API.Departments()
+      type: "FETCH_XDISCIPLINARY",
+      payload: API.XDisciplinary()
     });
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
 
-  selectDepartment(department) {
+  selectXDisciplinary(department) {
     this.props.dispatch({
       type: "SELECT_DEPARTMENT",
       value: department.department_key
@@ -32,13 +32,13 @@ class CourseContainer extends Component {
   }
 
   render() {
-    const dataSource = this.ds.cloneWithRows(this.props.departments);
+    const dataSource = this.ds.cloneWithRows(this.props.xdisciplines);
     return (
       <View>
         <ListView
           contentContainerStyle={ styles.list }
           dataSource={ dataSource }
-          renderRow={ (rowData) => DepartmentItem(rowData, this.selectDepartment.bind(this)) }
+          renderRow={ (rowData) => DepartmentItem(rowData, this.selectXDisciplinary.bind(this)) }
         />
       </View>
     )
@@ -56,6 +56,6 @@ const styles = StyleSheet.create({
 export default connect(store => {
   return {
     pending: store.main.pending,
-    departments: store.main.departments,
+    xdisciplines: store.main.xdisciplines,
   }
-})(CourseContainer);
+})(XDisciplinaryList);

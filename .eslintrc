@@ -1,5 +1,8 @@
 {
-  "extends": "es2015",
+  "extends": [
+    "es2015",
+    "eslint:recommended"
+  ],
   "plugins": [
     "react"
   ],

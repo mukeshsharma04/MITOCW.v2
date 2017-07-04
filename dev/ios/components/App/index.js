@@ -4,14 +4,14 @@ import {
   NavigatorIOS
 } from 'react-native';
 
-import CourseContainer from '../DepartmentsList';
+import InitialComponent from '../ListSelector';
 
 export default class App extends Component {
   render() {
     return (
       <NavigatorIOS
         initialRoute={ {
-          component: CourseContainer,
+          component: InitialComponent,
           title: 'MIT OpenCourseWare',
         } }
         style={ styles.container }

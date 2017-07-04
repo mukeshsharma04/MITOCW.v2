@@ -13,10 +13,11 @@
 		"eslint-plugin-react": "^7.1.0",
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.0",
-		"react-native-accordion": "^1.0.1",
+		"react-native-accordion": "compojoom/react-native-accordion#compojoom-fixes",
 		"react-native-html-parser": "^0.0.4",
 		"react-native-htmlview": "^0.9.0",
 		"react-redux": "^5.0.4",
+		"react-tween-state": "^0.1.5",
 		"redux": "^3.6.0",
 		"redux-promise-middleware": "^4.2.0"
 	},

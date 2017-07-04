@@ -5,6 +5,8 @@ function main(state = {
   pending: false,
   departments: [],
   departments_mapped: {},
+  xdisciplines: [],
+  xdisciplines_mapped: {},
   courses: {},
   courses_grouped: {}
 }, action) {
@@ -19,11 +21,26 @@ function main(state = {
   case "FETCH_DEPARTMENTS_FULFILLED":
     newState.departments = [];
     newState.departments_mapped = {};
+    newState.loading_departments = false;
     for (let dept of action.payload) {
       for (let d of Object.keys(dept)) {
         dept[d].department_key = d;
         newState.departments.push(dept[d]);
         newState.departments_mapped[d] = dept[d];
+      }
+    }
+    break;
+  case "FETCH_XDISCIPLINARY_FULFILLED":
+    newState.xdisciplines = [];
+    newState.xdisciplines_mapped = {};
+    for (let dept of action.payload) {
+      for (let d of Object.keys(dept)) {
+        dept[d] = {
+          "home_url": dept[d]
+        };
+        dept[d].department_key = d;
+        newState.xdisciplines.push(dept[d]);
+        newState.xdisciplines_mapped[d] = dept[d];
       }
     }
     break;
