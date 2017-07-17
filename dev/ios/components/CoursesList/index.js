@@ -50,7 +50,7 @@ class CourseList extends Component {
     if (!this.props.courses[this.props[this.props.departmentKind].department_key]) return this.ds.cloneWithRows(rows);
 
     for (let course of this.props.courses[this.props[this.props.departmentKind].department_key]) {
-      if (!course.course_title.includes(this.state.search)) continue;
+      if (!course.course_title.includes(this.state.search) && !course.master_course_number.includes(this.state.search)) continue;
       courses_grouped[course.level] = courses_grouped[course.level] || [];
       courses_grouped[course.level].push(course);
     }
