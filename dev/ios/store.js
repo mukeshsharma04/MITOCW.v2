@@ -50,12 +50,75 @@ function main(state = {
     newState.courses = {};
     newState.courses[action.payload.department] = [];
     newState.courses_grouped[action.payload.department] = {};
+
     for (let course of action.payload.courses) {
       for (let c of Object.keys(course)) {
         course[c].course_key = c;
         newState.courses[action.payload.department].push(course[c]);
       }
     }
+
+    newState.courses[action.payload.department].sort((a, b) => {
+      if (a.master_course_number > b.master_course_number) return 1;
+      if (a.master_course_number < b.master_course_number) return -1;
+      return 0;
+    });
+
+    function bucket(values, prop) {
+      let bucket = [];
+      let container = [];
+      let previous = null;
+      for (let value of values) {
+        if (previous && value[prop] != previous[prop]) {
+          bucket.push(container);
+          container = [];
+          previous = null;
+        }
+        container.push(value);
+        previous = value;
+      }
+      bucket.push(container);
+      return bucket;
+    }
+
+    function flatten(arr){
+      let len = arr.length;
+      for (let i = 0; i < len; i++) {
+        let v = arr.shift()
+        arr.push(...v);
+      }
+      return arr;
+    }
+
+    let courseList = newState.courses[action.payload.department];
+
+    let courseMasterBucket = bucket(courseList, "master_course_number");
+
+    const season = {
+      "Summer": 0,
+      "Fall": 1
+    };
+
+    for (let b = 0; b < courseMasterBucket.length; b++) {
+      courseMasterBucket[b].sort((a, b) => {
+        if (a.year < b.year) return 1;
+        if (a.year > b.year) return -1;
+        return 0;
+      });
+
+      courseMasterBucket[b] = bucket(courseMasterBucket[b], "year");
+
+      for (let yb = 0; yb < courseMasterBucket[b].length; yb++) {
+        courseMasterBucket[b][yb].sort((a, b) => {
+          if (a.term[season] < b.term[season]) return 1;
+          if (a.term[season] > b.term[season]) return -1;
+          return 0;
+        });
+      }
+    }
+
+    newState.courses[action.payload.department] = flatten(flatten(courseMasterBucket));
+
     break;
   default:
     break;
