@@ -1,6 +1,6 @@
 import cheerio from 'cheerio-without-node-native';
 
-const OCW_URL = 'http://ocw5.mit.edu/';
+const OCW_URL = 'https://ocw.mit.edu/';
 
 export default {
   Departments() {
@@ -9,7 +9,6 @@ export default {
   },
 
   XDisciplinary() {
-    console.log("Getting these");
     return fetch(`${OCW_URL}courses/CrossDisciplinaryMaster.json`)
       .then(resp => resp.json(), err => console.error(err));
   },
@@ -23,8 +22,6 @@ export default {
     }
 
     url += '.json';
-
-    console.log("Fetching", url);
 
     return fetch(url)
       .then(resp => resp.json(), err => console.error(err))

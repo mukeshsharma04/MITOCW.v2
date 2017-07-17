@@ -15,7 +15,6 @@ class CourseList extends Component {
       search: '',
       loaded: false
     };
-    console.log("This props", this.props[this.props.departmentKind]);
   }
 
   componentDidMount() {
