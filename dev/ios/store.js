@@ -29,6 +29,16 @@ function main(state = {
         newState.departments_mapped[d] = dept[d];
       }
     }
+    newState.departments.sort((a, b) => {
+      switch (a.title > b.title) {
+      case true:
+        return 1;
+      case false:
+        return -1;
+      default:
+        return 0;
+      }
+    });
     break;
   case "FETCH_XDISCIPLINARY_FULFILLED":
     newState.xdisciplines = [];
